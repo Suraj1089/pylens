@@ -34,20 +34,14 @@ jobs:
         run: |
           node -e "const fs=require('fs'); const p=require('./package.json'); fs.appendFileSync(process.env.GITHUB_OUTPUT, 'publisher='+p.publisher+'\\nname='+p.name+'\\nversion='+p.version+'\\n');"
 
-      - name: Check whether version already exists on Open VSX
-        id: exists
+      - name: Show target extension URL
         run: |
           EXTENSION_ID="${{ steps.meta.outputs.publisher }}.${{ steps.meta.outputs.name }}"
-          VERSION="${{ steps.meta.outputs.version }}"
-          if npx ovsx show "$EXTENSION_ID@$VERSION" >/dev/null 2>&1; then
-            echo "published=true" >> "$GITHUB_OUTPUT"
-            echo "Version $VERSION already published for $EXTENSION_ID."
-          else
-            echo "published=false" >> "$GITHUB_OUTPUT"
-          fi
+          echo "Open VSX URL: https://open-vsx.org/extension/${{ steps.meta.outputs.publisher }}/${{ steps.meta.outputs.name }}"
+          echo "Extension ID: $EXTENSION_ID"
+          echo "Version: ${{ steps.meta.outputs.version }}"
 
       - name: Publish to Open VSX
-        if: steps.exists.outputs.published == 'false'
         env:
           OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
         run: |
@@ -55,4 +49,4 @@ jobs:
             echo "OPEN_VSX_TOKEN is not set. Add it in repository settings -> Secrets and variables -> Actions."
             exit 1
           fi
-          npx ovsx publish -p "$OPEN_VSX_TOKEN"
+          npx ovsx publish --skip-duplicate -p "$OPEN_VSX_TOKEN"
