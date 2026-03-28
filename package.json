@@ -2,7 +2,7 @@
   "name": "pylens",
   "displayName": "PyLens",
   "description": "VS Code extension for Python dependency security and health: outdated checks, OSV/PyPI vulnerabilities, license insights, maintenance status, and quick updates.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "pylens",
   "license": "MIT",
   "engines": {
