@@ -18,11 +18,21 @@
     "outdated",
     "dependencies",
     "pypi",
+    "osv",
+    "vulnerability-scanner",
+    "license-compliance",
+    "supply-chain-security",
+    "dependency-management",
+    "dependency-updates",
+    "requirements-txt",
+    "requirements-in",
+    "pip-tools",
     "requirements",
     "pyproject",
     "poetry",
     "pipenv",
-    "uv"
+    "uv",
+    "devsecops"
   ],
   "icon": "media/pylens-icon.png",
   "activationEvents": [

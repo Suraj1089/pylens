@@ -1,6 +1,40 @@
 # PyLens
 
-PyLens is a VS Code extension that scans Python dependency files and shows:
+PyLens is a VS Code extension for Python dependency health and security.
+It helps you find outdated packages, known vulnerabilities, license risk, and maintenance issues in one place, then update dependencies quickly from the editor.
+
+PyLens is built for teams using `requirements.txt`, `requirements.in` (pip-tools), `pyproject.toml`, `uv.lock`, and Pipenv files who want faster dependency hygiene with less manual checking.
+
+## Core Features
+
+- outdated package detection with latest version from PyPI
+- vulnerability insights from PyPI + OSV (with CVE/issue identifiers)
+- license visibility for compliance-sensitive projects
+- maintenance status (`active`, `stale`, `unstable`)
+- row-level update actions + detailed side panel
+- hover tooltips with Quick Update links inside dependency files
+- `requirements.in` compilation flow support
+
+## Open VSX Listing Copy
+
+Use this in your Open VSX/Marketplace long description:
+
+PyLens is a VS Code extension that continuously analyzes Python dependencies across `requirements.txt`, `requirements.in`, `pyproject.toml`, `uv.lock`, and Pipenv files. It highlights outdated packages, maps known vulnerabilities from OSV and PyPI, and surfaces license and maintenance signals so teams can make safer upgrade decisions quickly.
+
+Designed for real project workflows, PyLens adds actionable update controls directly in the scan table, package detail panel, and hover tooltips. You can choose file-only updates or run terminal commands after updates, including pip-tools compile flows for `requirements.in` projects.
+
+### Search Keywords
+
+- python dependency scanner
+- vscode python vulnerabilities
+- pypi outdated checker
+- osv vulnerability scanner
+- python license compliance
+- requirements.txt updater
+- pip-tools requirements.in
+- dependency health dashboard
+
+## Snapshot
 
 - outdated packages
 - latest versions from PyPI
