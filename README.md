@@ -94,3 +94,34 @@ PyLens provides these manual commands:
 - `PyLens: Export Results as CSV` (`pylens.exportCsv`)
 - `PyLens: Run Post-Update Command` (`pylens.runPostUpdateCommand`)
 - `PyLens: Compile requirements.in` (`pylens.compileRequirementsIn`)
+
+## Open VSX Auto Publish
+
+This repo includes `.github/workflows/publish-open-vsx.yml` that:
+
+- runs on every push to `main`/`master`
+- compiles the extension
+- publishes to Open VSX using `--skip-duplicate`
+- prints the exact Open VSX extension URL in logs
+
+### Required secret
+
+Add this repository secret in GitHub:
+
+- `OPEN_VSX_TOKEN` = your Open VSX personal access token
+
+For local/manual use, you can keep a token in `.env` (excluded from git). See `.env.example`.
+
+## Auto Version Bump
+
+This repo also includes `.github/workflows/auto-bump-version.yml`.
+
+Behavior:
+
+- on pushes to `main`/`master` that modify extension-related files (`src/**`, `media/**`, `README.md`, `tsconfig.json`, `.vscodeignore`, `package.json`)
+- automatically bumps `package.json` patch version (`x.y.z` -> `x.y.(z+1)`)
+- commits and pushes the bumped `package.json` + `package-lock.json`
+
+Important:
+
+- ensure repository `Settings -> Actions -> General -> Workflow permissions` is set to **Read and write permissions**

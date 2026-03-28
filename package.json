@@ -24,7 +24,7 @@
     "pipenv",
     "uv"
   ],
-  "icon": "media/pylens-icon.svg",
+  "icon": "media/pylens-icon.png",
   "activationEvents": [
     "onView:pylens-sidebar",
     "onCommand:pylens.check",
@@ -46,7 +46,7 @@
         {
           "id": "pylens-container",
           "title": "PyLens",
-          "icon": "media/pylens-icon.svg"
+          "icon": "media/pylens-icon.png"
         }
       ]
     },
