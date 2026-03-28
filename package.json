@@ -1,8 +1,8 @@
 {
   "name": "pylens",
   "displayName": "PyLens",
-  "description": "Analyze outdated Python packages with security and health insights across requirements.txt/.in, pyproject.toml (PEP 621/Poetry/PDM), uv.lock, Pipfile, and Pipfile.lock",
-  "version": "1.0.2",
+  "description": "VS Code extension for Python dependency security and health: outdated checks, OSV/PyPI vulnerabilities, license insights, maintenance status, and quick updates.",
+  "version": "1.0.0",
   "publisher": "pylens",
   "license": "MIT",
   "engines": {
@@ -27,10 +27,21 @@
     "requirements-txt",
     "requirements-in",
     "pip-tools",
+    "osv",
+    "vulnerability-scanner",
+    "license-compliance",
+    "supply-chain-security",
+    "dependency-management",
+    "dependency-updates",
+    "requirements-txt",
+    "requirements-in",
+    "pip-tools",
     "requirements",
     "pyproject",
     "poetry",
     "pipenv",
+    "uv",
+    "devsecops"
     "uv",
     "devsecops"
   ],
