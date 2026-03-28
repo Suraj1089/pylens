@@ -1,5 +1,11 @@
 # PyLens
 
+[![Version](https://img.shields.io/github/package-json/v/Suraj1089/pylens?style=flat-square)](https://github.com/Suraj1089/pylens/blob/main/package.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/Suraj1089/pylens/blob/main/LICENSE)
+[![Open VSX](https://img.shields.io/open-vsx/v/pylens/pylens?style=flat-square)](https://open-vsx.org/extension/pylens/pylens)
+[![Open VSX Downloads](https://img.shields.io/open-vsx/dt/pylens/pylens?style=flat-square)](https://open-vsx.org/extension/pylens/pylens)
+[![Open VSX Publish](https://img.shields.io/github/actions/workflow/status/Suraj1089/pylens/publish-open-vsx.yml?branch=main&label=open-vsx%20publish&style=flat-square)](https://github.com/Suraj1089/pylens/actions/workflows/publish-open-vsx.yml)
+
 PyLens is a VS Code extension for Python dependency health and security.
 It helps you find outdated packages, known vulnerabilities, license risk, and maintenance issues in one place, then update dependencies quickly from the editor.
 
