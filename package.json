@@ -41,7 +41,7 @@
     "poetry",
     "pipenv",
     "uv",
-    "devsecops"
+    "devsecops",
     "uv",
     "devsecops"
   ],
