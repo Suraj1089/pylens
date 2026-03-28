@@ -2,7 +2,7 @@
   "name": "pylens",
   "displayName": "PyLens",
   "description": "Analyze outdated Python packages with security and health insights across requirements.txt/.in, pyproject.toml (PEP 621/Poetry/PDM), uv.lock, Pipfile, and Pipfile.lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "pylens",
   "license": "MIT",
   "engines": {
