@@ -1,0 +1,60 @@
+name: Publish to Open VSX
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile
+        run: npm run compile
+
+      - name: Resolve extension coordinates
+        id: meta
+        run: |
+          echo "publisher=$(node -p \"require('./package.json').publisher\")" >> "$GITHUB_OUTPUT"
+          echo "name=$(node -p \"require('./package.json').name\")" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+
+      - name: Check whether version already exists on Open VSX
+        id: exists
+        run: |
+          EXTENSION_ID="${{ steps.meta.outputs.publisher }}.${{ steps.meta.outputs.name }}"
+          VERSION="${{ steps.meta.outputs.version }}"
+          if npx ovsx show "$EXTENSION_ID@$VERSION" >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "Version $VERSION already published for $EXTENSION_ID."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to Open VSX
+        if: steps.exists.outputs.published == 'false'
+        env:
+          OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
+        run: |
+          if [ -z "$OPEN_VSX_TOKEN" ]; then
+            echo "OPEN_VSX_TOKEN is not set. Add it in repository settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          npx ovsx publish -p "$OPEN_VSX_TOKEN"

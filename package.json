@@ -1,0 +1,179 @@
+{
+  "name": "pylens",
+  "displayName": "PyLens",
+  "description": "Analyze outdated Python packages with security and health insights across requirements.txt/.in, pyproject.toml (PEP 621/Poetry/PDM), uv.lock, Pipfile, and Pipfile.lock",
+  "version": "1.0.0",
+  "publisher": "pylens",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "python",
+    "packages",
+    "outdated",
+    "dependencies",
+    "pypi",
+    "requirements",
+    "pyproject",
+    "poetry",
+    "pipenv",
+    "uv"
+  ],
+  "icon": "media/pylens-icon.svg",
+  "activationEvents": [
+    "onView:pylens-sidebar",
+    "onCommand:pylens.check",
+    "onCommand:pylens.refresh",
+    "onCommand:pylens.selectFile",
+    "onCommand:pylens.exportJson",
+    "onCommand:pylens.exportCsv",
+    "onCommand:pylens.runPostUpdateCommand",
+    "onCommand:pylens.compileRequirementsIn",
+    "onCommand:pylens.quickUpdateDependency",
+    "onLanguage:toml",
+    "onLanguage:pip-requirements",
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pylens-container",
+          "title": "PyLens",
+          "icon": "media/pylens-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "pylens-container": [
+        {
+          "type": "webview",
+          "id": "pylens-sidebar",
+          "name": "PyLens"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "pylens.check",
+        "title": "PyLens: Scan Packages",
+        "icon": "$(search)"
+      },
+      {
+        "command": "pylens.refresh",
+        "title": "PyLens: Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "pylens.selectFile",
+        "title": "PyLens: Select Dependency File"
+      },
+      {
+        "command": "pylens.exportJson",
+        "title": "PyLens: Export Results as JSON"
+      },
+      {
+        "command": "pylens.exportCsv",
+        "title": "PyLens: Export Results as CSV"
+      },
+      {
+        "command": "pylens.runPostUpdateCommand",
+        "title": "PyLens: Run Post-Update Command",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "pylens.compileRequirementsIn",
+        "title": "PyLens: Compile requirements.in",
+        "icon": "$(sync)"
+      },
+      {
+        "command": "pylens.quickUpdateDependency",
+        "title": "PyLens: Quick Update Dependency"
+      }
+    ],
+    "configuration": {
+      "title": "PyLens",
+      "properties": {
+        "pylens.concurrency": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Number of concurrent PyPI requests when fetching package versions."
+        },
+        "pylens.timeout": {
+          "type": "number",
+          "default": 10000,
+          "minimum": 3000,
+          "maximum": 60000,
+          "description": "Timeout in milliseconds for each PyPI request."
+        },
+        "pylens.dependencyUpdateMode": {
+          "type": "string",
+          "enum": [
+            "file-only",
+            "file-and-run-command"
+          ],
+          "default": "file-only",
+          "description": "How update actions behave: only edit dependency files, or edit files and then run the configured terminal command."
+        },
+        "pylens.postUpdateCommand": {
+          "type": "string",
+          "default": "pip install -r ${dependencyFileRelative}",
+          "description": "Terminal command to run after an update when dependencyUpdateMode is file-and-run-command. Supports ${workspaceFolder}, ${dependencyFile}, ${dependencyFileRelative}."
+        },
+        "pylens.requirementsInCompileOnUpdate": {
+          "type": "boolean",
+          "default": true,
+          "description": "When dependencyUpdateMode is file-and-run-command, run the requirements.in compile command after updating a requirements.in file."
+        },
+        "pylens.requirementsInCompileCommand": {
+          "type": "string",
+          "default": "pip-compile ${dependencyFileRelative}",
+          "description": "Command used to compile requirements.in files. Supports ${workspaceFolder}, ${dependencyFile}, ${dependencyFileRelative}."
+        },
+        "pylens.vulnerabilityMode": {
+          "type": "string",
+          "enum": [
+            "all",
+            "outdated-only",
+            "off"
+          ],
+          "default": "all",
+          "description": "Controls when vulnerability data is fetched: all pinned packages, only outdated packages, or disabled."
+        },
+        "pylens.cacheTtlMs": {
+          "type": "number",
+          "default": 3600000,
+          "minimum": 60000,
+          "maximum": 86400000,
+          "description": "How long PyPI response cache is kept in memory before refreshing (milliseconds)."
+        },
+        "pylens.autoScanOnOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically scan packages when the sidebar is first opened."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "tsc --noEmit",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^3.0.0"
+  }
+}

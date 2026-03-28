@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="plHandle" x1="76" y1="74" x2="112" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6F59FF"/>
+      <stop offset="1" stop-color="#4E3BDA"/>
+    </linearGradient>
+    <linearGradient id="plBorder" x1="8" y1="8" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B4DFF"/>
+      <stop offset="1" stop-color="#4738D3"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="1" y="1" width="126" height="126" rx="30" fill="#0E1120" stroke="url(#plBorder)" stroke-width="2"/>
+
+  <circle cx="58" cy="58" r="36" fill="none" stroke="#5B4DFF" stroke-width="10"/>
+  <circle cx="58" cy="58" r="22" fill="#1A1E32"/>
+
+  <path d="M80 82L101 103" stroke="url(#plHandle)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M94 96L107 109" stroke="#5A46E2" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="45.5" y="52" width="25" height="6" rx="3" fill="#60D8A8"/>
+  <rect x="45.5" y="61" width="20" height="5" rx="2.5" fill="#5F8DFF"/>
+  <rect x="45.5" y="69" width="15" height="4" rx="2" fill="#6F59FF"/>
+
+  <path d="M58 42L61 48H68L62.4 51.8L64.8 58L58 54.2L51.2 58L53.6 51.8L48 48H55L58 42Z" fill="#F6B740"/>
+</svg>
