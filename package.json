@@ -56,7 +56,7 @@
         {
           "id": "pylens-container",
           "title": "PyLens",
-          "icon": "media/pylens-icon.png"
+          "icon": "media/pylens-activitybar.svg"
         }
       ]
     },
